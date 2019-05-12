@@ -1,15 +1,21 @@
 <template>
     <div class="siret-interface">
         <span>
-            <v-input :class="{invalid: !isValid}"
+            <v-input class="siret-interface__input"
+                     :class="{
+                        'siret-interface__input--invalid': !isValid,
+                        'siret-interface__input--valid': options.performValidation && isValid
+                     }"
                      :id="id"
                      :name="name"
-                     v-model="siret"
-                     v-mask="'### ### ### #####'"
+                     v-model="formattedValue"
+                     :mask="mask"
                      @input="onInput"
-                     placeholder="123 456 789 00016"
+                     :placeholder="placeholder"
                      :disabled="readonly"
                      :required="required"
+                     :icon-right="iconRight"
+                     :icon-right-color="!isValid ? 'danger' : 'accent'"
             ></v-input>
         </span>
         <br>
@@ -18,45 +24,83 @@
 
 <script>
   import mixin       from '@directus/extension-toolkit/mixins/interface';
-  import * as vss  from 'vat-siren-siret';
-  import { TheMask } from 'vue-the-mask';
+  import typeMapping from './french-company-identifier-types';
 
   export default {
-    directives: { TheMask },
-
     mixins: [ mixin ],
 
     data () {
       return {
-        siret:    this.value,
-        isValid:  false,
+        formattedValue: this.value,
       };
     },
 
+    computed: {
+      mask () {
+        return typeMapping[ this.options.type ].mask;
+      },
+
+      placeholder () {
+        return typeMapping[ this.options.type ].placeholder;
+      },
+
+      isValid () {
+        return this.validate(this.rawValue);
+      },
+
+      rawValue () {
+        const value = this.formattedValue || '';
+
+        return value.replace(/\s/g, '');
+      },
+
+      iconRight () {
+        if (this.isValid) {
+          return this.options.performValidation ? 'check' : null;
+        } else {
+          return 'close';
+        }
+      }
+    },
+
     methods: {
-      onInput (event) {
-        const siret = this.siret.replace(/\s/g, '');
+      onInput () {
+        this.$emit('input', this.isValid ? this.rawValue : null);
+      },
 
-        this.isValid = false;
-
-        if (!vss.isSIRET(siret)) {
-          this.$emit('input', null);
-          return;
+      validate (value) {
+        if (!this.options.performValidation || !this.required && !this.formattedValue) {
+          return true;
         }
 
-        this.isValid = true;
-        this.$emit('input', siret);
+        return typeMapping[ this.options.type ].validationFunction(value);
       },
     },
   };
 </script>
 
-<style lang="scss" scoped>
-    input {
-        border-radius: var(--border-radius);
-    }
+<style lang="scss">
+    .siret-interface__input {
+        &.siret-interface__input--invalid > input {
+            border-color: var(--danger) !important;
+            color: var(--danger) !important;
 
-    .invalid {
-        box-shadow: 0 0 5px 0 red;
+            &:focus {
+                color: var(--dark-gray) !important;
+            }
+        }
+
+        &.siret-interface__input--valid > input:focus {
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
+        }
+
+        &.siret-interface__input--valid > input + i {
+            display: none;
+        }
+
+        &.siret-interface__input--valid > input:focus + i {
+            display: unset;
+        }
     }
 </style>

@@ -8,7 +8,7 @@
 
 <script>
   import mixin from "@directus/extension-toolkit/mixins/interface";
-  import * as vss from 'vat-siren-siret';
+  import typeMapping from './french-company-identifier-types';
 
   export default {
     mixins: [mixin],
@@ -17,7 +17,7 @@
       displayValue() {
         const value = this.value || '';
 
-        return vss.formatSIRET(value);
+        return typeMapping[this.options.type].formatFunction(value);
       },
 
       moreInfoLinkUrl() {

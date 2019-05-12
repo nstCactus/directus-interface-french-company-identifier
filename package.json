@@ -1,7 +1,7 @@
 {
-  "name": "directus-interface-siret",
-  "version": "0.1.0",
-  "description": "",
+  "name": "directus-interface-french-company-identifier",
+  "version": "1.0.0",
+  "description": "Directus interface for handling french company identifiers (SIRET, SIREN & VAT number)",
   "main": "",
   "scripts": {
     "build": "directus-extensions build",
@@ -13,8 +13,7 @@
   "dependencies": {
     "@directus/extension-toolkit": "^0.0.1",
     "vat-siren-siret": "^1.2.1",
-    "vue": "^2.6.10",
-    "vue-the-mask": "^0.11.1"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
     "@vue/component-compiler-utils": "^2.6.0",

@@ -1,7 +1,49 @@
 {
-  "name": "Siret",
-  "version": "0.1.0",
+  "name": "$t:french_company_identifier",
+  "version": "1.0.0",
   "icon": "person",
-  "types": ["string"],
-  "options": {}
+  "types": ["string", "integer"],
+  "options": {
+    "performValidation": {
+      "name": "$t:perform_validation",
+      "comment": "$t:perform_validation_comment",
+      "interface": "toggle",
+      "default": true
+    },
+    "type": {
+      "name": "$t:type",
+      "comment": "$t:type_comment",
+      "interface": "dropdown",
+      "default": "SIRET",
+      "options": {
+        "choices": {
+          "SIRET": "$t:siret",
+          "SIREN": "$t:siren",
+          "VAT": "$t:vat"
+        }
+      }
+    }
+  },
+  "translation": {
+    "en-US": {
+      "french_company_identifier": "French company identifier",
+      "perform_validation": "Perform validation",
+      "perform_validation_comment": "Whether or not to validate the user input",
+      "type": "Type",
+      "type_comment": "Whether this field represents a SIREN, a SIRET or VAT number.",
+      "siret": "SIRET",
+      "siren": "SIREN",
+      "vat": "VAT"
+    },
+    "fr-FR": {
+      "french_company_identifier": "Numéro d'identification d'entreprise française",
+      "perform_validation": "Valider la saisie",
+      "perform_validation_comment": "Faut-il valider la saisie de l'utilisateur",
+      "type": "Type",
+      "type_comment": "Le type de numéro représenté par ce champ : SIREN, SIRET ou numéro de TVA.",
+      "siret": "SIRET",
+      "siren": "SIREN",
+      "vat": "T.V.A."
+    }
+  }
 }

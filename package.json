@@ -1,14 +1,24 @@
 {
   "name": "directus-interface-french-company-identifier",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Directus interface for handling french company identifiers (SIRET, SIREN & VAT number)",
   "main": "",
   "scripts": {
     "build": "directus-extensions build",
     "dev": "directus-extensions watch"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["siret", "siren", "tva", "vat", "numéro de tva", "directus-interface", "interfaces", "extensions", "directus"],
+  "author": {
+    "name": "nstCactus",
+    "email": "nstCactus@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nstCactus/directus-interface-french-company-identifier"
+  },
+  "bugs": {
+    "url": "https://github.com/nstCactus/directus-interface-french-company-identifier/issues"
+  },
   "license": "GPL-3.0",
   "dependencies": {
     "@directus/extension-toolkit": "^0.0.1",

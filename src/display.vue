@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a :href="moreInfoLinkUrl" target="_blank" rel="noopener,nofollow">
+    <a :href="moreInfoLinkUrl" @click="onClick" target="_blank" rel="noopener,nofollow">
       {{ displayValue }}
     </a>
   </div>
@@ -23,6 +23,12 @@
       moreInfoLinkUrl() {
         return `https://www.societe.com/cgi-bin/search?champs=${this.value}`;
       },
-    }
+    },
+
+    methods: {
+      onClick(event) {
+        event.stopPropagation();
+      },
+    },
   }
 </script>

@@ -1,27 +1,37 @@
 {
-  "name": "directus-interface-french-company-identifier",
-  "version": "1.0.1",
+  "name": "@le-gag/directus-interface-extension-french-company-identifier",
+  "version": "1.0.2",
   "description": "Directus interface for handling french company identifiers (SIRET, SIREN & VAT number)",
   "main": "",
   "scripts": {
     "build": "directus-extensions build",
     "dev": "directus-extensions watch"
   },
-  "keywords": ["siret", "siren", "tva", "vat", "numéro de tva", "directus-interface", "interfaces", "extensions", "directus"],
+  "keywords": [
+    "siret",
+    "siren",
+    "tva",
+    "vat",
+    "numéro de tva",
+    "directus-interface",
+    "interfaces",
+    "extensions",
+    "directus"
+  ],
   "author": {
     "name": "nstCactus",
     "email": "nstCactus@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nstCactus/directus-interface-french-company-identifier"
+    "url": "https://github.com/Le-GAG/directus-interface-extension-french-company-identifier"
   },
   "bugs": {
-    "url": "https://github.com/nstCactus/directus-interface-french-company-identifier/issues"
+    "url": "https://github.com/Le-GAG/directus-interface-extension-french-company-identifier/issues"
   },
-  "license": "GPL-3.0",
+  "license": "MIT",
   "dependencies": {
-    "@directus/extension-toolkit": "^0.0.1",
+    "@directus/extension-toolkit": "^0.3.0",
     "vat-siren-siret": "^1.2.1",
     "vue": "^2.6.10"
   },
